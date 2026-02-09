@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contátanos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e9f5ef;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+    }
+
+    .error {
+      color: #d64545;
+      font-size: 12px;
+      display: none;
+    }
+
+    input.error-border,
+    textarea.error-border {
+      border-color: #d64545;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-box {
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      padding: 10px;
+      flex: 1;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background: #0f7c63;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<form class="card" id="formulario" novalidate>
+  <h1>Contáctanos</h1>
+
+  <div class="row">
+    <div class="field">
+      <label>Nombre *</label>
+      <input type="text" id="nombre">
+      <div class="error">Este campo es obligatorio</div>
+    </div>
+
+    <div class="field">
+      <label>Apellido *</label>
+      <input type="text" id="apellido">
+      <div class="error">Este campo es obligatorio</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Correo electrónico *</label>
+    <input type="email" id="email" placeholder="">
+    <div class="error">Por favor, introduce un correo electrónico válido</div>
+  </div>
+
+  <div class="field">
+    <label>Tipo de consulta *</label>
+    <div class="radio-group">
+      <label class="radio-box">
+        <input type="radio" name="consulta" value="general">
+        Consulta general
+      </label>
+
+      <label class="radio-box">
+        <input type="radio" name="consulta" value="soporte">
+        Solicitud de soporte
+      </label>
+    </div>
+    <div class="error">Por favor, selecciona un tipo de consulta</div>
+  </div>
+
+  <div class="field">
+    <label>Mensaje *</label>
+    <textarea id="mensaje"></textarea>
+    <div class="error">Este campo es obligatorio</div>
+  </div>
+
+  <div class="field checkbox">
+    <input type="checkbox" id="consentimiento">
+
+    <span>Autorizo ser contactado por el equipo *</span>
+  </div>
+  <div class="error">Para enviar este formulario, por favor consiente ser contactado</div>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  const form = document.getElementById("formulario");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let valido = true;
+
+    const campos = [
+      { input: nombre },
+      { input: apellido },
+      { input: mensaje }
+    ];
+
+    campos.forEach(campo => {
+      const error = campo.input.nextElementSibling;
+      if (!campo.input.value.trim()) {
+        campo.input.classList.add("error-border");
+        error.style.display = "block";
+        valido = false;
+      } else {
+        campo.input.classList.remove("error-border");
+        error.style.display = "none";
+      }
+    });
+
+    const emailError = email.nextElementSibling;
+    if (!email.value.includes("@")) {
+      email.classList.add("error-border");
+      emailError.style.display = "block";
+      valido = false;
+    } else {
+      email.classList.remove("error-border");
+      emailError.style.display = "none";
+    }
+
+    const radios = document.querySelectorAll('input[name="consulta"]');
+    const radioError = radios[0].closest(".field").querySelector(".error");
+    if (![...radios].some(r => r.checked)) {
+      radioError.style.display = "block";
+      valido = false;
+    } else {
+      radioError.style.display = "none";
+    }
+
+    const consentimientoError = document.querySelectorAll(".error")[4];
+    if (!consentimiento.checked) {
+      consentimientoError.style.display = "block";
+      valido = false;
+    } else {
+      consentimientoError.style.display = "none";
+    }
+
+    if (valido) {
+      alert("¡Mensaje enviado!\nGracias por completar el formulario.");
+      form.reset();
+    }
+  });
+</script>
+
+</body>
+</html>

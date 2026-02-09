@@ -56,9 +56,8 @@ Luego recorta/optimiza/edita tu imagen como desees, agrégala a tu carpeta de pr
 - 221k0182
 - 8-B
 - Sitio  - [Kelvin Pino Ake](https://filemanager.ai/new3/index.php)
-- Github - [@tuusuario](https://github.com/baltazarhack/formulariokelvinpino/edit/main/README.md)
+- Github - [@baltazarhack](https://github.com/baltazarhack/formulariokelvinpino/edit/main/README.md)
 
-**Nota: Elimina esta nota y agrega/elimina/edita las líneas anteriores según los enlaces que desees compartir.**
 
 
 
